@@ -249,30 +249,14 @@
             currentMovieIndex = index;
             const movieId = movieIdsInOrder[index];
             const movie = movieData[movieId];
-
-            const scoreBlock = (scoreType, scoreValue) => {
-                const icon = scoreType === 'tomatometer' ? 'tomatometer-fresh' : 'aud_score-fresh';
-                const label = scoreType === 'tomatometer' ? 'Tomatometer' : 'Audience Score';
-                return `
-                    <div class="flex items-center">
-                        <img src="https://www.rottentomatoes.com/assets/pizza-pie/images/icons/tomatometer/${icon}.149b5e8adc3.svg" alt="${label}" class="rotten-tomatoes-logo mr-3">
-                        <div>
-                            <p class="text-lg font-bold">${label}</p>
-                            <p class="text-3xl font-black">${scoreValue}%</p>
-                        </div>
-                    </div>
-                `;
-            };
-
-            const linkedScoreBlock = (scoreType, scoreValue) => {
-                 if (!movie.rtUrlSlug) return scoreBlock(scoreType, scoreValue);
-                 return `<a href="https://www.rottentomatoes.com/${movie.rtUrlSlug}" target="_blank" rel="noopener noreferrer" class="block score-link">${scoreBlock(scoreType, scoreValue)}</a>`;
-            }
             
             movieDetailContent.innerHTML = `
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="md:col-span-2">
-                        <h1 class="text-5xl md:text-6xl font-title font-bold text-red-700 tracking-tight mb-2">${movie.title} <span class="text-zinc-500 font-normal text-4xl">(${movie.year})</span></h1>
+                        <h1 class="text-5xl md:text-6xl font-title font-bold text-red-700 tracking-tight mb-2">
+                            ${movie.rtUrlSlug ? `<a href="https://www.rottentomatoes.com/${movie.rtUrlSlug}" target="_blank" rel="noopener noreferrer" class="rt-link">${movie.title}</a>` : movie.title} 
+                            <span class="text-zinc-500 font-normal text-4xl">(${movie.year})</span>
+                        </h1>
                         <div class="my-4">
                            <img src="${movie.image}" alt="Image for ${movie.title}" class="w-full rounded-lg shadow-md">
                         </div>
@@ -289,8 +273,22 @@
                              <h3 class="text-3xl font-bold mb-4 text-green-700">Scores & Reviews</h3>
                              <div class="bg-white p-6 rounded-lg shadow-md border border-zinc-200">
                                 <div class="flex flex-wrap gap-8 mb-6">
-                                    ${movie.rottenTomatoes.tomatometer ? linkedScoreBlock('tomatometer', movie.rottenTomatoes.tomatometer) : ''}
-                                    ${movie.rottenTomatoes.audience ? linkedScoreBlock('audience', movie.rottenTomatoes.audience) : '<p>No scores available.</p>'}
+                                    ${movie.rottenTomatoes.tomatometer ? `
+                                        <div class="flex items-center">
+                                            <img src="https://www.rottentomatoes.com/assets/pizza-pie/images/icons/tomatometer/tomatometer-fresh.svg" alt="Tomatometer" class="w-8 h-8 mr-3">
+                                            <div>
+                                                <p class="text-lg font-bold">Tomatometer</p>
+                                                <p class="text-3xl font-black">${movie.rottenTomatoes.tomatometer}%</p>
+                                            </div>
+                                        </div>` : ''}
+                                    ${movie.rottenTomatoes.audience ? `
+                                        <div class="flex items-center">
+                                            <img src="https://www.rottentomatoes.com/assets/pizza-pie/images/icons/audience/aud_score-fresh.svg" alt="Audience Score" class="w-8 h-8 mr-3">
+                                            <div>
+                                                <p class="text-lg font-bold">Audience Score</p>
+                                                <p class="text-3xl font-black">${movie.rottenTomatoes.audience}%</p>
+                                            </div>
+                                        </div>` : '<p>No scores available.</p>'}
                                 </div>
                                 <div class="border-t border-zinc-200 pt-4"><h4 class="text-xl font-bold mb-2">Critic Reviews</h4><div class="space-y-3 text-zinc-600 italic">${movie.rottenTomatoes.reviews.map(review => `<p>"${review}"</p>`).join('')}</div></div>
                              </div>
