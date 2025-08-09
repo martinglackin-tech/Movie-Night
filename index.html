@@ -71,12 +71,6 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
             transform: scale(1.02);
         }
-        .score-link {
-            transition: transform 0.2s ease;
-        }
-        .score-link:hover {
-            transform: scale(1.05);
-        }
     </style>
 </head>
 <body>
@@ -162,12 +156,12 @@
                 year: "2025",
                 image: "sorry.jpg.webp",
                 trailerId: "Rc0jgWoZo9w",
-                rtUrlSlug: null,
+                rtUrlSlug: "m/sorry_baby",
                 synopsis: "Something terrible happened to Agnes. But life goes on for everyone else. When a friend visits on the brink of an important milestone, Agnes realizes how stuck she's been, in this bittersweet story of finding your way after your world comes crashing down.",
                 director: { name: "Eva Victor", rtId: null },
                 cast: [{ name: "Eva Victor", rtId: null }, { name: "Patti Harrison", rtId: "patti_harrison" }, { name: "Ayo Edebiri", rtId: "ayo_edebiri" }],
                 trivia: ["The film was shot on location, using natural light to create an intimate, authentic atmosphere.", "Director Eva Victor wrote the screenplay based on personal experiences with grief and friendship.", "The score features a minimalist piano composition to underscore the film's emotional journey."],
-                rottenTomatoes: { tomatometer: null, audience: null, reviews: ["A quiet, powerful film about the messy reality of healing.", "Eva Victor's direction is sensitive and insightful, drawing a remarkable performance from its lead."] }
+                rottenTomatoes: { tomatometer: 92, audience: 85, reviews: ["A quiet, powerful film about the messy reality of healing.", "Eva Victor's direction is sensitive and insightful, drawing a remarkable performance from its lead."] }
             },
             "revenge": {
                 title: "Revenge",
@@ -205,8 +199,8 @@
                 trivia: ["A black-and-white, dialogue-free comedy inspired by silent films and Looney Tunes.", "It was made on a shoestring budget of around $150,000.", "All animal characters are people in mascot costumes."],
                 rottenTomatoes: { tomatometer: 97, audience: 98, reviews: ["An inventive, hilarious, and utterly bonkers tribute to classic slapstick comedy.", "One of the most original and purely entertaining films of the year."] }
             },
-            "ainda-estou-aqui": {
-                title: "I'm Still Here (Ainda Estou Aqui)",
+            "im-still-here": {
+                title: "I'm Still Here",
                 year: "2024",
                 image: "still.jpg.webp",
                 trailerId: "gDunV808Yf4",
@@ -215,7 +209,7 @@
                 director: { name: "Walter Salles", rtId: "walter_salles" },
                 cast: [{ name: "Fernanda Torres", rtId: "fernanda_torres" }, { name: "Selton Mello", rtId: "selton_mello" }, { name: "Fernanda Montenegro", rtId: "fernanda_montenegro" }],
                 trivia: ["The film is based on the memoir of Marcelo Rubens Paiva.", "It depicts the true story of Eunice Paiva during Brazil's military dictatorship.", "The film received a standing ovation at the Venice Film Festival."],
-                rottenTomatoes: { tomatometer: null, audience: null, reviews: ["A powerful and moving portrait of resilience against oppression.", "Hailed as a masterpiece at the Venice Film Festival."] }
+                rottenTomatoes: { tomatometer: 100, audience: null, reviews: ["A powerful and moving portrait of resilience against oppression.", "Hailed as a masterpiece at the Venice Film Festival."] }
             }
         };
         const movieIdsInOrder = Object.keys(movieData);
@@ -275,7 +269,7 @@
                                 <div class="flex flex-wrap gap-8 mb-6">
                                     ${movie.rottenTomatoes.tomatometer ? `
                                         <div class="flex items-center">
-                                            <img src="https://www.rottentomatoes.com/assets/pizza-pie/images/icons/tomatometer/tomatometer-fresh.svg" alt="Tomatometer" class="w-8 h-8 mr-3">
+                                            <span class="text-5xl mr-3">🍅</span>
                                             <div>
                                                 <p class="text-lg font-bold">Tomatometer</p>
                                                 <p class="text-3xl font-black">${movie.rottenTomatoes.tomatometer}%</p>
@@ -283,7 +277,7 @@
                                         </div>` : ''}
                                     ${movie.rottenTomatoes.audience ? `
                                         <div class="flex items-center">
-                                            <img src="https://www.rottentomatoes.com/assets/pizza-pie/images/icons/audience/aud_score-fresh.svg" alt="Audience Score" class="w-8 h-8 mr-3">
+                                            <span class="text-5xl mr-3">🍿</span>
                                             <div>
                                                 <p class="text-lg font-bold">Audience Score</p>
                                                 <p class="text-3xl font-black">${movie.rottenTomatoes.audience}%</p>
