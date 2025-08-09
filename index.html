@@ -71,6 +71,12 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
             transform: scale(1.02);
         }
+        .score-link {
+            transition: transform 0.2s ease;
+        }
+        .score-link:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -120,6 +126,7 @@
                 year: "2018",
                 image: "mandy.jpg",
                 trailerId: "rI054ow6KJk",
+                rtUrlSlug: "m/mandy_2018",
                 synopsis: "In the Pacific Northwest in 1983, a man's peaceful life with his artist partner is shattered by a sadistic cult. This catapults him into a phantasmagoric journey of bloody vengeance, filled with fire and heavy metal.",
                 director: { name: "Panos Cosmatos", rtId: "panos_cosmatos" },
                 cast: [{ name: "Nicolas Cage", rtId: "nicolas_cage" }, { name: "Andrea Riseborough", rtId: "andrea_riseborough" }, { name: "Linus Roache", rtId: "linus_roache" }],
@@ -131,6 +138,7 @@
                 year: "2002",
                 image: "hero.jpg",
                 trailerId: "MgsddFEe9Oc",
+                rtUrlSlug: "m/hero",
                 synopsis: "In ancient China, a nameless prefect claims to have defeated three assassins who sought to kill the ruthless King of Qin. As he recounts his victories, a complex tale of love, honor, and conflicting loyalties unfolds, questioning the nature of truth itself.",
                 director: { name: "Zhang Yimou", rtId: "yimou_zhang" },
                 cast: [{ name: "Jet Li", rtId: "jet_li" }, { name: "Tony Leung", rtId: "tony_leung" }, { name: "Maggie Cheung", rtId: "maggie_cheung" }],
@@ -142,6 +150,7 @@
                 year: "2025",
                 image: "28.jpg.webp",
                 trailerId: "mcvLKldPM08",
+                rtUrlSlug: null,
                 synopsis: "Decades after the Rage virus decimated Great Britain, a new generation of survivors must confront the horrifying legacy of the past and a world that has evolved in unimaginable ways. The fight for the future is far from over.",
                 director: { name: "Danny Boyle", rtId: "danny_boyle" },
                 cast: [{ name: "Cillian Murphy", rtId: "cillian_murphy" }, { name: "Jodie Comer", rtId: "jodie_comer" }, { name: "Ralph Fiennes", rtId: "ralph_fiennes" }],
@@ -153,6 +162,7 @@
                 year: "2025",
                 image: "sorry.jpg.webp",
                 trailerId: "Rc0jgWoZo9w",
+                rtUrlSlug: null,
                 synopsis: "Something terrible happened to Agnes. But life goes on for everyone else. When a friend visits on the brink of an important milestone, Agnes realizes how stuck she's been, in this bittersweet story of finding your way after your world comes crashing down.",
                 director: { name: "Eva Victor", rtId: null },
                 cast: [{ name: "Eva Victor", rtId: null }, { name: "Patti Harrison", rtId: "patti_harrison" }, { name: "Ayo Edebiri", rtId: "ayo_edebiri" }],
@@ -164,6 +174,7 @@
                 year: "2017",
                 image: "revenge.jpg",
                 trailerId: "eIU_IHfp3cU",
+                rtUrlSlug: "m/revenge_2018",
                 synopsis: "A young woman's romantic getaway with her wealthy boyfriend turns into a nightmare when his friends arrive. After being assaulted and left for dead in the desert, she reemerges as an avenging angel, embarking on a brutal hunt for revenge.",
                 director: { name: "Coralie Fargeat", rtId: "coralie_fargeat" },
                 cast: [{ name: "Matilda Lutz", rtId: "matilda_lutz" }, { name: "Kevin Janssens", rtId: "kevin_janssens" }, { name: "Vincent Colombe", rtId: "vincent_colombe" }],
@@ -175,6 +186,7 @@
                 year: "2016",
                 image: "handmaiden.webp",
                 trailerId: "whldChqCsYk",
+                rtUrlSlug: "m/the_handmaiden",
                 synopsis: "In 1930s Korea, a pickpocket is hired by a con man to become the handmaiden to a Japanese heiress, as part of a plot to defraud her. However, the plan goes awry when the handmaiden and the heiress develop unexpected feelings for each other.",
                 director: { name: "Park Chan-wook", rtId: "chan-wook_park" },
                 cast: [{ name: "Kim Min-hee", rtId: "min-hee_kim" }, { name: "Kim Tae-ri", rtId: "tae-ri_kim" }, { name: "Ha Jung-woo", rtId: "jung-woo_ha" }],
@@ -186,6 +198,7 @@
                 year: "2022",
                 image: "beavers.jpeg",
                 trailerId: "5h4P-26kHAw",
+                rtUrlSlug: "m/hundreds_of_beavers",
                 synopsis: "After his applejack distillery is destroyed, a 19th-century salesman must survive a frozen wilderness by trapping animals. He soon finds himself in an epic, slapstick battle against his greatest foe: hundreds of beavers.",
                 director: { name: "Mike Cheslik", rtId: null },
                 cast: [{ name: "Ryland Tews", rtId: null }, { name: "Olivia Graves", rtId: null }, { name: "Wes Tank", rtId: null }],
@@ -197,6 +210,7 @@
                 year: "2024",
                 image: "still.jpg.webp",
                 trailerId: "gDunV808Yf4",
+                rtUrlSlug: "m/i_m_still_here_2024",
                 synopsis: "Based on a true story, this film follows Eunice Paiva, a mother of five whose life is upended when her husband, a congressman, disappears during Brazil's military dictatorship. Her tireless search for him transforms her into a formidable activist.",
                 director: { name: "Walter Salles", rtId: "walter_salles" },
                 cast: [{ name: "Fernanda Torres", rtId: "fernanda_torres" }, { name: "Selton Mello", rtId: "selton_mello" }, { name: "Fernanda Montenegro", rtId: "fernanda_montenegro" }],
@@ -235,6 +249,25 @@
             currentMovieIndex = index;
             const movieId = movieIdsInOrder[index];
             const movie = movieData[movieId];
+
+            const scoreBlock = (scoreType, scoreValue) => {
+                const icon = scoreType === 'tomatometer' ? 'tomatometer-fresh' : 'aud_score-fresh';
+                const label = scoreType === 'tomatometer' ? 'Tomatometer' : 'Audience Score';
+                return `
+                    <div class="flex items-center">
+                        <img src="https://www.rottentomatoes.com/assets/pizza-pie/images/icons/tomatometer/${icon}.149b5e8adc3.svg" alt="${label}" class="rotten-tomatoes-logo mr-3">
+                        <div>
+                            <p class="text-lg font-bold">${label}</p>
+                            <p class="text-3xl font-black">${scoreValue}%</p>
+                        </div>
+                    </div>
+                `;
+            };
+
+            const linkedScoreBlock = (scoreType, scoreValue) => {
+                 if (!movie.rtUrlSlug) return scoreBlock(scoreType, scoreValue);
+                 return `<a href="https://www.rottentomatoes.com/${movie.rtUrlSlug}" target="_blank" rel="noopener noreferrer" class="block score-link">${scoreBlock(scoreType, scoreValue)}</a>`;
+            }
             
             movieDetailContent.innerHTML = `
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -256,8 +289,8 @@
                              <h3 class="text-3xl font-bold mb-4 text-blue-600">Scores & Reviews</h3>
                              <div class="bg-white p-6 rounded-lg shadow-md border border-zinc-200">
                                 <div class="flex flex-wrap gap-8 mb-6">
-                                    ${movie.rottenTomatoes.tomatometer ? `<div class="flex items-center"><img src="https://www.rottentomatoes.com/assets/pizza-pie/images/icons/tomatometer/tomatometer-fresh.149b5e8adc3.svg" alt="Tomatometer" class="rotten-tomatoes-logo mr-3"><div><p class="text-lg font-bold">Tomatometer</p><p class="text-3xl font-black">${movie.rottenTomatoes.tomatometer}%</p></div></div>` : ''}
-                                    ${movie.rottenTomatoes.audience ? `<div class="flex items-center"><img src="https://www.rottentomatoes.com/assets/pizza-pie/images/icons/audience/aud_score-fresh.6c24d79faaf.svg" alt="Audience Score" class="rotten-tomatoes-logo mr-3"><div><p class="text-lg font-bold">Audience Score</p><p class="text-3xl font-black">${movie.rottenTomatoes.audience}%</p></div></div>` : '<p>No scores available.</p>'}
+                                    ${movie.rottenTomatoes.tomatometer ? linkedScoreBlock('tomatometer', movie.rottenTomatoes.tomatometer) : ''}
+                                    ${movie.rottenTomatoes.audience ? linkedScoreBlock('audience', movie.rottenTomatoes.audience) : '<p>No scores available.</p>'}
                                 </div>
                                 <div class="border-t border-zinc-200 pt-4"><h4 class="text-xl font-bold mb-2">Critic Reviews</h4><div class="space-y-3 text-zinc-600 italic">${movie.rottenTomatoes.reviews.map(review => `<p>"${review}"</p>`).join('')}</div></div>
                              </div>
