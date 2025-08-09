@@ -280,13 +280,13 @@
                             Watch Trailer on YouTube
                         </a>
                         <div class="mt-8">
-                            <h3 class="text-3xl font-bold mb-4 text-blue-600">Synopsis</h3>
+                            <h3 class="text-3xl font-bold mb-4 text-green-700">Synopsis</h3>
                             <div class="bg-white p-6 rounded-lg shadow-md border border-zinc-200">
                                 <p class="text-lg text-zinc-700">${movie.synopsis}</p>
                             </div>
                         </div>
                         <div class="mt-8">
-                             <h3 class="text-3xl font-bold mb-4 text-blue-600">Scores & Reviews</h3>
+                             <h3 class="text-3xl font-bold mb-4 text-green-700">Scores & Reviews</h3>
                              <div class="bg-white p-6 rounded-lg shadow-md border border-zinc-200">
                                 <div class="flex flex-wrap gap-8 mb-6">
                                     ${movie.rottenTomatoes.tomatometer ? linkedScoreBlock('tomatometer', movie.rottenTomatoes.tomatometer) : ''}
@@ -298,11 +298,11 @@
                     </div>
                     <div class="md:col-span-1">
                         <div class="bg-white p-6 rounded-lg shadow-md border border-zinc-200 sticky top-8">
-                            <h3 class="text-2xl font-bold mb-4 text-blue-600">Main Cast</h3>
+                            <h3 class="text-2xl font-bold mb-4 text-green-700">Main Cast</h3>
                             <div class="flex flex-col space-y-2">${movie.cast.map(actor => `<span class="bg-zinc-200 text-zinc-800 px-3 py-1 rounded-full text-lg">${createPersonLink(actor)}</span>`).join('')}</div>
-                            <h3 class="text-2xl font-bold mt-8 mb-4 text-blue-600">Director</h3>
+                            <h3 class="text-2xl font-bold mt-8 mb-4 text-green-700">Director</h3>
                             <div class="flex flex-wrap gap-4"><span class="bg-zinc-200 text-zinc-800 px-3 py-1 rounded-full text-lg">${createPersonLink(movie.director)}</span></div>
-                            <h3 class="text-2xl font-bold mt-8 mb-4 text-blue-600">Trivia</h3>
+                            <h3 class="text-2xl font-bold mt-8 mb-4 text-green-700">Trivia</h3>
                             <ul class="list-disc list-inside space-y-2 text-zinc-600">${movie.trivia.map(item => `<li>${item}</li>`).join('')}</ul>
                         </div>
                     </div>
