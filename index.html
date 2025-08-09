@@ -122,6 +122,7 @@
             "mandy": {
                 title: "Mandy",
                 year: "2018",
+                image: "mandy.jpg",
                 trailerId: "rI054ow85Zg",
                 synopsis: "In the Pacific Northwest in 1983, a man's peaceful life with his artist partner is shattered by a sadistic cult. This catapults him into a phantasmagoric journey of bloody vengeance, filled with fire and heavy metal.",
                 director: { name: "Panos Cosmatos", imdbId: "nm2693225" },
@@ -132,6 +133,7 @@
             "hero": {
                 title: "Hero",
                 year: "2002",
+                image: "hero.jpg",
                 trailerId: "kFq9p_nkeAc",
                 synopsis: "In ancient China, a nameless prefect claims to have defeated three assassins who sought to kill the ruthless King of Qin. As he recounts his victories, a complex tale of love, honor, and conflicting loyalties unfolds, questioning the nature of truth itself.",
                 director: { name: "Zhang Yimou", imdbId: "nm0955439" },
@@ -142,6 +144,7 @@
             "28-years-later": {
                 title: "28 Years Later",
                 year: "2025",
+                image: "28.jpg.webp",
                 trailerId: "4w5p0OKI_wM", // Official Teaser
                 synopsis: "Decades after the Rage virus decimated Great Britain, a new generation of survivors must confront the horrifying legacy of the past and a world that has evolved in unimaginable ways. The fight for the future is far from over.",
                 director: { name: "Danny Boyle", imdbId: "nm0000965" },
@@ -152,6 +155,7 @@
             "sorry-baby": {
                 title: "Sorry, Baby",
                 year: "2025",
+                image: "sorry.jpg.webp",
                 trailerId: "dQw4w9WgXcQ", // Placeholder
                 synopsis: "Something terrible happened to Agnes. But life goes on for everyone else. When a friend visits on the brink of an important milestone, Agnes realizes how stuck she's been, in this bittersweet story of finding your way after your world comes crashing down.",
                 director: { name: "Eva Victor", imdbId: "nm9392318" },
@@ -162,6 +166,7 @@
             "revenge": {
                 title: "Revenge",
                 year: "2017",
+                image: "revenge.jpg",
                 trailerId: "52G3-bM_a4s",
                 synopsis: "A young woman's romantic getaway with her wealthy boyfriend turns into a nightmare when his friends arrive. After being assaulted and left for dead in the desert, she reemerges as an avenging angel, embarking on a brutal hunt for revenge.",
                 director: { name: "Coralie Fargeat", imdbId: "nm4202528" },
@@ -172,6 +177,7 @@
             "the-handmaiden": {
                 title: "The Handmaiden",
                 year: "2016",
+                image: "handmaiden.webp",
                 trailerId: "wKp6kzd3I2I",
                 synopsis: "In 1930s Korea, a pickpocket is hired by a con man to become the handmaiden to a Japanese heiress, as part of a plot to defraud her. However, the plan goes awry when the handmaiden and the heiress develop unexpected feelings for each other.",
                 director: { name: "Park Chan-wook", imdbId: "nm0661791" },
@@ -182,6 +188,7 @@
             "hundreds-of-beavers": {
                 title: "Hundreds of Beavers",
                 year: "2022",
+                image: "beavers.jpeg",
                 trailerId: "a11rA_i3T2E",
                 synopsis: "After his applejack distillery is destroyed, a 19th-century salesman must survive a frozen wilderness by trapping animals. He soon finds himself in an epic, slapstick battle against his greatest foe: hundreds of beavers.",
                 director: { name: "Mike Cheslik", imdbId: "nm8482813" },
@@ -192,6 +199,7 @@
             "ainda-estou-aqui": {
                 title: "I'm Still Here (Ainda Estou Aqui)",
                 year: "2024",
+                image: "still.jpg.webp",
                 trailerId: "9S8e-GMMH9A",
                 synopsis: "Based on a true story, this film follows Eunice Paiva, a mother of five whose life is upended when her husband, a congressman, disappears during Brazil's military dictatorship. Her tireless search for him transforms her into a formidable activist.",
                 director: { name: "Walter Salles", imdbId: "nm0758622" },
@@ -244,7 +252,7 @@
                     <div class="md:col-span-2">
                         <h1 class="text-5xl md:text-6xl font-title font-bold text-red-700 tracking-tight mb-2">${movie.title} <span class="text-zinc-500 font-normal text-4xl">(${movie.year})</span></h1>
                         <div class="my-4">
-                           <img src="https://placehold.co/800x450/e2e8f0/64748b?text=${encodeURIComponent(movie.title)}" alt="Placeholder for ${movie.title}" class="w-full rounded-lg shadow-md">
+                           <img src="${movie.image}" alt="Image for ${movie.title}" class="w-full rounded-lg shadow-md">
                         </div>
                         <a href="https://www.youtube.com/watch?v=${movie.trailerId}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary text-lg">
                             Watch Trailer on YouTube
