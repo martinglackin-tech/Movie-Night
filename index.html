@@ -24,11 +24,15 @@
             transition: background-color 0.3s ease;
             cursor: pointer;
         }
+        .btn:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
         .btn-primary {
             background-color: #2563eb;
             color: #ffffff;
         }
-        .btn-primary:hover {
+        .btn-primary:hover:not(:disabled) {
             background-color: #1d4ed8;
         }
         .btn-secondary {
@@ -85,7 +89,7 @@
             <p class="text-lg text-zinc-600 mb-6">
                 After you've seen all the options, you'll be able to rank them by dragging and dropping them into your preferred order.
             </p>
-            <button id="start-btn" class="btn btn-primary text-xl px-8 py-4">Let's Get Started</button>
+            <button id="start-btn" class="btn btn-primary text-xl px-8 py-4" disabled>Loading...</button>
         </div>
     </div>
 
@@ -159,7 +163,7 @@
                 trailerId: "dQw4w9WgXcQ", // Placeholder
                 synopsis: "Something terrible happened to Agnes. But life goes on for everyone else. When a friend visits on the brink of an important milestone, Agnes realizes how stuck she's been, in this bittersweet story of finding your way after your world comes crashing down.",
                 director: { name: "Eva Victor", imdbId: "nm9392318" },
-                cast: [{ name: "Eva Victor", imdbId: "nm9392318" }, { name: "Kenan Thompson", imdbId: "nm0860380" }, { name: "Bowen Yang", imdbId: "nm6342225" }],
+                cast: [{ name: "Eva Victor", imdbId: "nm9392318" }, { name: "Patti Harrison", imdbId: "nm6543189" }, { name: "Ayo Edebiri", imdbId: "nm6543222" }],
                 trivia: ["The film was shot on location, using natural light to create an intimate, authentic atmosphere.", "Director Eva Victor wrote the screenplay based on personal experiences with grief and friendship.", "The score features a minimalist piano composition to underscore the film's emotional journey."],
                 rottenTomatoes: { tomatometer: null, audience: null, reviews: ["A quiet, powerful film about the messy reality of healing.", "Eva Victor's direction is sensitive and insightful, drawing a remarkable performance from its lead."] }
             },
@@ -414,18 +418,24 @@
 
         // --- INITIALIZATION ---
         onAuthStateChanged(auth, async (user) => {
-            if (!user) {
+            if (user) {
+                userId = user.uid;
+            } else {
                 try {
                     if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
                         await signInWithCustomToken(auth, __initial_auth_token);
                     } else {
                         await signInAnonymously(auth);
                     }
+                    userId = auth.currentUser?.uid;
                 } catch (error) {
                     console.error("Sign-in failed:", error);
                 }
             }
-             userId = auth.currentUser?.uid;
+            if (userId) {
+                startBtn.disabled = false;
+                startBtn.textContent = "Let's Get Started";
+            }
         });
 
     </script>
